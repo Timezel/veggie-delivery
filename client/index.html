@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veggie Delivery - Доставка вегетарианской еды</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1>Veggie<span>Delivery</span></h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Главная</a></li>
+          <li><a href="#restaurants">Рестораны</a></li>
+          <li><a href="#categories">Категории</a></li>
+          <li><a href="#about">О нас</a></li>
+        </ul>
+        <div class="auth-buttons">
+          <button id="login-btn" class="btn btn-outline">Войти</button>
+          <button id="register-btn" class="btn btn-primary">Регистрация</button>
+        </div>
+        <div class="user-profile" style="display: none;">
+          <span id="username-display"></span>
+          <button id="logout-btn" class="btn btn-outline">Выйти</button>
+          <a href="cart.html" class="cart-icon">🛒</a>
+          <a href="admin.html" class="admin-link" style="display: none;">Админ</a>
+        </div>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Здоровая вегетарианская еда с доставкой</h1>
+          <p>Выбирайте из лучших ресторанов вашего города</p>
+          <div class="city-selector">
+            <select id="city-select">
+              <option value="">Выберите город</option>
+              <option value="Москва">Москва</option>
+              <option value="Санкт-Петербург">Санкт-Петербург</option>
+              <option value="Казань">Казань</option>
+              <option value="Екатеринбург">Екатеринбург</option>
+            </select>
+            <button id="find-restaurants" class="btn btn-primary">Найти рестораны</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="restaurants" class="restaurants-section">
+      <div class="container">
+        <h2>Рестораны в вашем городе</h2>
+        <div class="restaurants-grid" id="restaurants-container">
+          <!-- Рестораны будут загружены через JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="categories-section">
+      <div class="container">
+        <h2>Категории блюд</h2>
+        <div class="categories-grid">
+          <div class="category-card" data-category="Салаты">
+            <img src="images/salad.jpg" alt="Салаты">
+            <h3>Салаты</h3>
+          </div>
+          <div class="category-card" data-category="Супы">
+            <img src="images/soup.jpg" alt="Супы">
+            <h3>Супы</h3>
+          </div>
+          <div class="category-card" data-category="Основные блюда">
+            <img src="images/main.jpg" alt="Основные блюда">
+            <h3>Основные блюда</h3>
+          </div>
+          <div class="category-card" data-category="Десерты">
+            <img src="images/dessert.jpg" alt="Десерты">
+            <h3>Десерты</h3>
+          </div>
+          <div class="category-card" data-category="Напитки">
+            <img src="images/drink.jpg" alt="Напитки">
+            <h3>Напитки</h3>
+          </div>
+          <div class="category-card" data-category="Веганские">
+            <img src="images/vegan.jpg" alt="Веганские">
+            <h3>Веганские</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="popular" class="popular-section">
+      <div class="container">
+        <h2>Популярные блюда</h2>
+        <div class="food-items-grid" id="popular-items-container">
+          <!-- Популярные блюда будут загружены через JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>О нашем сервисе</h2>
+            <p>VeggieDelivery - это первый сервис доставки, специализирующийся исключительно на вегетарианской и веганской кухне. Мы сотрудничаем с лучшими ресторанами, чтобы предложить вам здоровую и вкусную пищу.</p>
+            <p>Наша миссия - сделать вегетарианское питание доступным и удобным для всех.</p>
+          </div>
+          <div class="about-image">
+            <img src="images/about.jpg" alt="О нас">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>VeggieDelivery</h3>
+          <p>Доставка вегетарианской еды</p>
+        </div>
+        <div class="footer-section">
+          <h3>Контакты</h3>
+          <p>info@veggiedelivery.com</p>
+          <p>+7 (123) 456-78-90</p>
+        </div>
+        <div class="footer-section">
+          <h3>Города</h3>
+          <ul>
+            <li>Москва</li>
+            <li>Санкт-Петербург</li>
+            <li>Казань</li>
+            <li>Екатеринбург</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 VeggieDelivery. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="food-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body" id="food-modal-body">
+        <!-- Содержимое модального окна будет загружено через JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

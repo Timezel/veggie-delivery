@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина - Veggie Delivery</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1>Veggie<span>Delivery</span></h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="index.html#restaurants">Рестораны</a></li>
+          <li><a href="index.html#categories">Категории</a></li>
+          <li><a href="index.html#about">О нас</a></li>
+        </ul>
+        <div class="auth-buttons">
+          <button id="login-btn" class="btn btn-outline">Войти</button>
+          <button id="register-btn" class="btn btn-primary">Регистрация</button>
+        </div>
+        <div class="user-profile" style="display: none;">
+          <span id="username-display"></span>
+          <button id="logout-btn" class="btn btn-outline">Выйти</button>
+          <a href="cart.html" class="cart-icon">🛒</a>
+          <a href="admin.html" class="admin-link" style="display: none;">Админ</a>
+        </div>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="cart-section">
+      <div class="container">
+        <h2>Ваша корзина</h2>
+        <div class="cart-content">
+          <div class="cart-items" id="cart-items-container">
+            <!-- Товары будут загружены через JavaScript -->
+            <p class="empty-cart-message">Ваша корзина пуста</p>
+          </div>
+          <div class="cart-summary">
+            <h3>Итого</h3>
+            <div class="summary-details">
+              <div class="summary-row">
+                <span>Товары</span>
+                <span id="subtotal">0 ₽</span>
+              </div>
+              <div class="summary-row">
+                <span>Доставка</span>
+                <span id="delivery-fee">0 ₽</span>
+              </div>
+              <div class="summary-row total">
+                <span>Всего</span>
+                <span id="total">0 ₽</span>
+              </div>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary">Оформить заказ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>VeggieDelivery</h3>
+          <p>Доставка вегетарианской еды</p>
+        </div>
+        <div class="footer-section">
+          <h3>Контакты</h3>
+          <p>info@veggiedelivery.com</p>
+          <p>+7 (123) 456-78-90</p>
+        </div>
+        <div class="footer-section">
+          <h3>Города</h3>
+          <ul>
+            <li>Москва</li>
+            <li>Санкт-Петербург</li>
+            <li>Казань</li>
+            <li>Екатеринбург</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 VeggieDelivery. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="checkout-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body">
+        <h2>Оформление заказа</h2>
+        <form id="checkout-form">
+          <div class="form-group">
+            <label for="delivery-address">Адрес доставки</label>
+            <input type="text" id="delivery-address" name="delivery-address" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="payment-method">Способ оплаты</label>
+            <select id="payment-method" name="payment-method" required>
+              <option value="cash">Наличными при получении</option>
+              <option value="card">Картой онлайн</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Подтвердить заказ</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/cart.js"></script>
+</body>
+</html>

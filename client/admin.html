@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель администратора - Veggie Delivery</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .admin-tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .admin-tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-bottom: none;
+      margin-right: 5px;
+      background-color: #f8f8f8;
+    }
+    
+    .admin-tab.active {
+      background-color: #fff;
+      border-color: #ddd;
+      border-bottom: 1px solid #fff;
+      margin-bottom: -1px;
+    }
+    
+    .admin-content {
+      display: none;
+    }
+    
+    .admin-content.active {
+      display: block;
+    }
+    
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    .admin-table th, .admin-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .admin-table th {
+      background-color: #f8f8f8;
+    }
+    
+    .admin-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .form-group textarea {
+      height: 100px;
+    }
+    
+    .form-actions {
+      margin-top: 20px;
+    }
+    
+    .btn-danger {
+      background-color: #f44336;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1>Veggie<span>Delivery</span></h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="index.html#restaurants">Рестораны</a></li>
+          <li><a href="index.html#categories">Категории</a></li>
+          <li><a href="index.html#about">О нас</a></li>
+        </ul>
+        <div class="auth-buttons">
+          <button id="login-btn" class="btn btn-outline">Войти</button>
+          <button id="register-btn" class="btn btn-primary">Регистрация</button>
+        </div>
+        <div class="user-profile" style="display: none;">
+          <span id="username-display"></span>
+          <button id="logout-btn" class="btn btn-outline">Выйти</button>
+          <a href="cart.html" class="cart-icon">🛒</a>
+          <a href="admin.html" class="admin-link" style="display: none;">Админ</a>
+        </div>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="admin-section">
+      <div class="container">
+        <h2>Панель администратора</h2>
+        
+        <div class="admin-tabs">
+          <div class="admin-tab active" data-tab="restaurants">Рестораны</div>
+          <div class="admin-tab" data-tab="food-items">Блюда</div>
+          <div class="admin-tab" data-tab="orders">Заказы</div>
+          <div class="admin-tab" data-tab="users">Пользователи</div>
+        </div>
+        
+        <div id="restaurants-tab" class="admin-content active">
+          <button id="add-restaurant-btn" class="btn btn-primary">Добавить ресторан</button>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Название</th>
+                <th>Город</th>
+                <th>Рейтинг</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="restaurants-table-body">
+              <!-- Рестораны будут загружены через JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="food-items-tab" class="admin-content">
+          <button id="add-food-item-btn" class="btn btn-primary">Добавить блюдо</button>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Название</th>
+                <th>Ресторан</th>
+                <th>Категория</th>
+                <th>Цена</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="food-items-table-body">
+              <!-- Блюда будут загружены через JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="orders-tab" class="admin-content">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Пользователь</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+                <th>Дата</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="orders-table-body">
+              <!-- Заказы будут загружены через JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="users-tab" class="admin-content">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Имя</th>
+                <th>Email</th>
+                <th>Админ</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <!-- Пользователи будут загружены через JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Модальные окна для добавления/редактирования -->
+  <div id="restaurant-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body">
+        <h2 id="restaurant-modal-title">Добавить ресторан</h2>
+        <form id="restaurant-form">
+          <input type="hidden" id="restaurant-id">
+          <div class="form-group">
+            <label for="restaurant-name">Название</label>
+            <input type="text" id="restaurant-name" required>
+          </div>
+          <div class="form-group">
+            <label for="restaurant-description">Описание</label>
+            <textarea id="restaurant-description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="restaurant-city">Город</label>
+            <input type="text" id="restaurant-city" required>
+          </div>
+          <div class="form-group">
+            <label for="restaurant-image">Изображение (URL)</label>
+            <input type="text" id="restaurant-image">
+          </div>
+          <div class="form-group">
+            <label for="restaurant-rating">Рейтинг</label>
+            <input type="number" id="restaurant-rating" min="0" max="5" step="0.1">
+          </div>
+          <div class="form-group">
+            <label for="restaurant-delivery-time">Время доставки</label>
+            <input type="text" id="restaurant-delivery-time" placeholder="Например: 30-40 мин">
+          </div>
+          <div class="form-group">
+            <label for="restaurant-delivery-fee">Стоимость доставки</label>
+            <input type="number" id="restaurant-delivery-fee" min="0">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <button type="button" class="btn btn-outline cancel-modal">Отмена</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="food-item-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body">
+        <h2 id="food-item-modal-title">Добавить блюдо</h2>
+        <form id="food-item-form">
+          <input type="hidden" id="food-item-id">
+          <div class="form-group">
+            <label for="food-item-name">Название</label>
+            <input type="text" id="food-item-name" required>
+          </div>
+          <div class="form-group">
+            <label for="food-item-restaurant">Ресторан</label>
+            <select id="food-item-restaurant" required>
+              <!-- Рестораны будут загружены через JavaScript -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="food-item-description">Описание</label>
+            <textarea id="food-item-description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="food-item-price">Цена</label>
+            <input type="number" id="food-item-price" min="0" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label for="food-item-category">Категория</label>
+            <select id="food-item-category" required>
+              <option value="Салаты">Салаты</option>
+              <option value="Супы">Супы</option>
+              <option value="Основные блюда">Основные блюда</option>
+              <option value="Десерты">Десерты</option>
+              <option value="Напитки">Напитки</option>
+              <option value="Веганские">Веганские</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="food-item-image">Изображение (URL)</label>
+            <input type="text" id="food-item-image">
+          </div>
+          <div class="form-group">
+            <label for="food-item-ingredients">Ингредиенты (через запятую)</label>
+            <input type="text" id="food-item-ingredients">
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="food-item-vegetarian"> Вегетарианское
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="food-item-vegan"> Веганское
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <button type="button" class="btn btn-outline cancel-modal">Отмена</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="order-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body">
+        <h2>Заказ #<span id="order-id"></span></h2>
+        <div class="order-details">
+          <h3>Информация о заказе</h3>
+          <p><strong>Пользователь:</strong> <span id="order-user"></span></p>
+          <p><strong>Адрес доставки:</strong> <span id="order-address"></span></p>
+          <p><strong>Телефон:</strong> <span id="order-phone"></span></p>
+          <p><strong>Способ оплаты:</strong> <span id="order-payment"></span></p>
+          <p><strong>Статус:</strong> <span id="order-status"></span></p>
+          <p><strong>Дата заказа:</strong> <span id="order-date"></span></p>
+          <p><strong>Общая сумма:</strong> <span id="order-total"></span></p>
+          
+          <h3>Состав заказа</h3>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Блюдо</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th>Сумма</th>
+              </tr>
+            </thead>
+            <tbody id="order-items-body">
+              <!-- Товары заказа будут загружены через JavaScript -->
+            </tbody>
+          </table>
+          
+          <div class="form-group">
+            <label for="order-status-select">Изменить статус</label>
+            <select id="order-status-select">
+              <option value="Processing">Обработка</option>
+              <option value="Cooking">Готовится</option>
+              <option value="On the way">В пути</option>
+              <option value="Delivered">Доставлен</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button id="update-order-status" class="btn btn-primary">Обновить статус</button>
+            <button type="button" class="btn btn-outline cancel-modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="user-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body">
+        <h2>Пользователь: <span id="user-username"></span></h2>
+        <div class="user-details">
+          <p><strong>Email:</strong> <span id="user-email"></span></p>
+          <p><strong>Адрес:</strong> <span id="user-address"></span></p>
+          <p><strong>Телефон:</strong> <span id="user-phone"></span></p>
+          <p><strong>Дата регистрации:</strong> <span id="user-created"></span></p>
+          
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="user-is-admin"> Администратор
+            </label>
+          </div>
+          <div class="form-actions">
+            <button id="update-user" class="btn btn-primary">Сохранить изменения</button>
+            <button type="button" class="btn btn-outline cancel-modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
